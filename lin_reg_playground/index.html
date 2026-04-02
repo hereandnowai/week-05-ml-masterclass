@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Regression Playground | HERE AND NOW AI</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/favicon-logo-with-name.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/logo-of-here-and-now-ai.png" alt="HERE AND NOW AI Logo" class="logo">
+            <h1>Machine Learning Playground</h1>
+            <p class="slogan">AI is Good</p>
+        </div>
+    </header>
+
+    <nav class="tab-navigation">
+        <button class="tab-btn active" data-tab="regression">Linear & Polynomial</button>
+        <button class="tab-btn" data-tab="classification">Classification</button>
+    </nav>
+
+    <main>
+        <div id="regression-tab" class="tab-content active">
+            <section class="intro">
+                <h2>Welcome to the Lemonade Stand Simulation! 🍋</h2>
+                <p>Become an AI expert by finding the "Secret Rule" that connects <strong>Lemons</strong> to <strong>Money</strong>.</p>
+            </section>
+
+            <section class="playground-container">
+                <div class="controls">
+                    <div class="control-group">
+                        <h3>Model Settings</h3>
+                        <label for="model-type">Robot's Tool:</label>
+                        <select id="model-type">
+                            <option value="linear">Linear (The Ruler 📏)</option>
+                            <option value="polynomial">Polynomial (The Pipe Cleaner 🎢)</option>
+                        </select>
+                        
+                        <div id="poly-degree-container" style="display: none;">
+                            <label for="poly-degree">Wiggliness (Degree): <span id="poly-degree-val">2</span></label>
+                            <input type="range" id="poly-degree" min="2" max="10" step="1" value="2">
+                            <p class="hint">Higher degree = more curves!</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3>Training Method</h3>
+                        <label for="solve-method">Learning Strategy:</label>
+                        <select id="solve-method">
+                            <option value="normal">Normal Equation (Insta-Solve ✨)</option>
+                            <option value="gd">Gradient Descent (Step-by-Step 🧗)</option>
+                        </select>
+                        
+                        <div id="gd-controls" style="display: none;">
+                            <label for="learning-rate">Learning Rate (Step Size): <span id="lr-val">0.1</span></label>
+                            <input type="range" id="learning-rate" min="0.01" max="1" step="0.01" value="0.1">
+                            <button id="gd-step-btn">Take 10 Steps</button>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button id="reset-btn">Reset Data</button>
+                        <button id="solve-btn" class="primary-btn">Magic Robot Solve!</button>
+                    </div>
+
+                    <div class="stats">
+                        <h3>Live Metrics</h3>
+                        <div class="metric-grid">
+                            <div class="metric-card">
+                                <span class="metric-label">MAE:</span>
+                                <span id="mae-val" class="metric-value">0.00</span>
+                                <p class="hint">Avg. Error ($)</p>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">MSE:</span>
+                                <span id="mse-val" class="metric-value">0.00</span>
+                                <p class="hint">Squared Error ($²)</p>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">RMSE:</span>
+                                <span id="rmse-val" class="metric-value">0.00</span>
+                                <p class="hint">Error Root ($)</p>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">R² Score:</span>
+                                <span id="r2-val" class="metric-value">0.00</span>
+                                <p class="hint">Best = 1.0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="regChart"></canvas>
+                    <div id="interpretation" class="interpretation-box">
+                        <h3>Robot's Logic:</h3>
+                        <p id="coef-interpretation">Adjust the sliders to see how the robot thinks!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="concepts">
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h4>Bias vs Variance</h4>
+                        <p><strong>Bias:</strong> Robot is too simple (Straight line for curved data).</p>
+                        <p><strong>Variance:</strong> Robot is too sensitive (Wiggling between noise dots).</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Generalization</h4>
+                        <p>Can the robot predict the price for a lemon-count it has never seen before?</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="classification-tab" class="tab-content">
+            <section class="intro">
+                <h2>The Lemon Sorter 🍋 vs 🍊</h2>
+                <p>Instead of guessing money, the robot must decide: Is it a <strong>Lemon</strong> or an <strong>Orange</strong>?</p>
+            </section>
+
+            <section class="playground-container">
+                <div class="controls">
+                    <div class="control-group">
+                        <h3>Logistic Regression</h3>
+                        <p class="hint">We use the <strong>Sigmoid Function</strong> to turn numbers into probabilities (0% to 100%).</p>
+                        <label for="threshold">Decision Boundary: <span id="threshold-val">0.5</span></label>
+                        <input type="range" id="threshold" min="0" max="1" step="0.05" value="0.5">
+                    </div>
+
+                    <div class="stats">
+                        <h3>Confusion Matrix</h3>
+                        <div class="confusion-matrix">
+                            <div class="cm-cell tp">TP: <span id="tp-val">0</span></div>
+                            <div class="cm-cell fp">FP: <span id="fp-val">0</span></div>
+                            <div class="cm-cell fn">FN: <span id="fn-val">0</span></div>
+                            <div class="cm-cell tn">TN: <span id="tn-val">0</span></div>
+                        </div>
+                        <h3>Performance</h3>
+                        <p>Accuracy: <span id="acc-val">0%</span></p>
+                        <p>Precision: <span id="prec-val">0%</span></p>
+                        <p>Recall: <span id="rec-val">0%</span></p>
+                        <p>F1-Score: <span id="f1-val">0%</span></p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="classChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand-info">
+                <h3>HERE AND NOW AI</h3>
+                <p>AI is Good</p>
+                <a href="https://hereandnowai.com">hereandnowai.com</a>
+                <p>Email: <a href="mailto:info@hereandnowai.com">info@hereandnowai.com</a></p>
+                <p>Phone: +91 996 296 1000</p>
+            </div>
+            <div class="socials">
+                <a href="https://www.linkedin.com/company/hereandnowai/">LinkedIn</a>
+                <a href="https://x.com/hereandnow_ai">X</a>
+                <a href="https://instagram.com/hereandnow_ai">Instagram</a>
+                <a href="https://youtube.com/@hereandnow_ai">YouTube</a>
+                <a href="https://github.com/hereandnowai">GitHub</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 HERE AND NOW AI. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+:root {
+    --primary: #FFDF00;
+    --secondary: #004040;
+    --text-on-dark: #FFFFFF;
+    --background: #f4f4f4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--secondary);
+}
+
+header {
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 5px solid var(--primary);
+}
+
+.logo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+
+.slogan {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.playground-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.control-group {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-left: 5px solid var(--primary);
+    border-radius: 5px;
+}
+
+.control-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.primary-btn:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    background-color: #ddd;
+    color: var(--secondary);
+    padding: 1rem 2rem;
+}
+
+.tab-btn.active {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.metric-card {
+    background: #fff;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.metric-label { font-weight: bold; font-size: 0.8rem; display: block; }
+.metric-value { font-size: 1.2rem; color: var(--secondary); font-weight: bold; }
+
+.interpretation-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #eef;
+    border-radius: 10px;
+    border-left: 5px solid #00f;
+}
+
+.confusion-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: #ccc;
+    border: 1px solid #999;
+}
+
+.cm-cell {
+    background: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tp { color: #008000; } /* Predicted True, Actual True */
+.tn { color: #008000; } /* Predicted False, Actual False */
+.fp { color: #d00000; } /* Predicted True, Actual False */
+.fn { color: #d00000; } /* Predicted False, Actual True */
+
+.concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.concept-card {
+    background: #fdfdfd;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px dashed #ccc;
+}
+    filter: brightness(0.9);
+}
+
+#reset-btn {
+    background-color: #eee;
+    color: var(--secondary);
+}
+
+.stats {
+    background: var(--secondary);
+    color: var(--primary);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.chart-container {
+    background: #fff;
+    min-height: 400px;
+}
+
+.explanation {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #eef2f2;
+    border-radius: 10px;
+}
+
+footer {
+    background-color: var(--secondary);
+    color: var(--text-on-dark);
+    padding: 3rem 1rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.socials a {
+    color: var(--primary);
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+.socials a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .playground-container {
+        grid-template-columns: 1fr;
+    }
+}
